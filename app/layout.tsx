@@ -1,7 +1,9 @@
+// import { useState } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
+import { MenuProvider } from "@/src/common/context/MenuContext";
 import NavigationBar from "@/src/common/navigationBar";
-import SideBar from "@/src/common/sideBar";
+import Menu from "@/src/common/menu";
 
 export const metadata: Metadata = {
   title: "月經計算機",
@@ -9,8 +11,8 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico", // 如果需要支援舊版瀏覽器
-    apple: "/favicon.png", // 用於 Apple Touch Icon
-  }
+    apple: "/logo.png", // 用於 Apple Touch Icon
+  },
 };
 
 export default function RootLayout({
@@ -18,12 +20,15 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // const [menuOpen, setMenuOpen] = useState<boolean>(false);
   return (
     <html>
-      <body>
-        <NavigationBar />
-        <SideBar />
-        {children}
+      <body className="relative">
+        <MenuProvider>
+          <NavigationBar />
+          <Menu />
+          {children}
+        </MenuProvider>
       </body>
     </html>
   );
