@@ -6,8 +6,8 @@ import NavigationBar from "@/src/common/navigationBar";
 import Menu from "@/src/common/menu";
 
 export const metadata: Metadata = {
-  title: "月經計算機",
-  description: "月經計算機",
+  title: "月經 Notebook",
+  description: "月經 Notebook",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico", // 如果需要支援舊版瀏覽器
@@ -20,14 +20,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // const [menuOpen, setMenuOpen] = useState<boolean>(false);
   return (
     <html>
       <body className="relative">
         <MenuProvider>
           <NavigationBar />
           <Menu />
-          {children}
+          <div>{children}</div>
         </MenuProvider>
       </body>
     </html>
