@@ -6,7 +6,7 @@ export default function WelcomeCard(): JSX.Element {
       <div className="lg:w-[25rem] w-full bg-[#AB9182] rounded-md py-8 px-4 text-[#FFFFFF]">
         <h1 className="text-3xl mb-8">歡迎使用月經 Notebook~</h1>
         <div>
-          <p className="text-xl">在這裡你可以：</p>
+          <p className="text-xl mb-2">在這裡你可以：</p>
           <ol className="list-decimal pl-10">
             <li>快速計算下一次的月經日期。</li>
             <li>
