@@ -16,7 +16,7 @@ export default function NavigationBar(): JSX.Element {
         <div className="ml-4 lg:text-2xl">123546</div>
       </div>
       <div className="flex items-center">
-        <div className="cursor-pointer text-md">
+        <div className="cursor-pointer text-lg">
           <IoPerson />
         </div>
         <div className="ml-4 text-2xl cursor-pointer" onClick={toggleMenu}>

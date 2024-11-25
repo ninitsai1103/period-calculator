@@ -8,7 +8,7 @@ export default function Menu(): JSX.Element {
   return (
     <>
       {menuOpen && (
-        <div className="py-2 bg-[#EDE9E6] absolute right-20 top-20 rounded-lg cursor-pointer">
+        <div className="py-2 bg-[#EDE9E6] absolute right-20 top-20 rounded-lg cursor-pointer z-[99]">
           <ul className="text-xl">
             <li className="px-4 py-1 flex items-center justify-center border-b border-[#F8F4F4]">
               <IoCalendar className="mr-2" /> 快速計算
