@@ -59,8 +59,8 @@ export default function QuickCalculator(): JSX.Element {
   return (
     <>
       <h1 className="text-center text-3xl mb-4">快速計算！</h1>
-      <div className="flex lg:flex-row flex-col border-4 rounded-lg border-[#F3F3EB]">
-        <div className="bg-[#F3F3EB] border-1 border-[#F3F3EB] p-10">
+      <div className="flex lg:flex-row lg:justify-center flex-col rounded-lg bg-[#F3F3EB]">
+        <div className="p-4">
           <form
             className="flex flex-col gap-4 mb-4"
             onSubmit={handleSubmit(onSubmit)}
@@ -122,14 +122,14 @@ export default function QuickCalculator(): JSX.Element {
             </div>
           </form>
         </div>
-        <div className="p-10">
-          <div>
+        <div className="p-4">
+          <div className="mb-1 p-2 bg-[#fe814ba2] rounded-sm">
             下一次月經開始日期:{result.nextPeriodFirstDate ? result.nextPeriodFirstDate : "尚未計算"}
           </div>
-          <div>
+          <div className="mb-1 p-2 bg-[#fe814ba2] rounded-sm">
             下一次月經結束日期:{result.nextPeriodEndDate ? result.nextPeriodEndDate : "尚未計算"}
           </div>
-          <div>
+          <div className="p-2 bg-[#FFDB8F] rounded-sm">
             排卵日:{result.ovulationDate ? result.ovulationDate : "尚未計算"}
           </div>
           <Calendar result={result}/>
