@@ -21,7 +21,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html>
+    <html suppressHydrationWarning={true}>
       <body className="relative">
         <MenuProvider>
           <NavigationBar />

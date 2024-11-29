@@ -15,15 +15,17 @@ export default function Hero(): JSX.Element {
       >
         <Image
           src={"/img/hero/bg/spring.jpg"}
-          width={450}
-          height={450}
+          width={500}
+          height={500}
+          style={{ width: '100%', height: '100%' }}
           alt="bg"
-          className="object-cover w-full h-full"
+          className="object-cover"
         />
         <Image
           src={"/img/hero/billboard/spring.png"}
           width={250}
           height={250}
+          style={{ width: 'auto', height: 'auto' }}
           alt="billboard"
           className="absolute -bottom-1 left-0"
         />
@@ -31,6 +33,7 @@ export default function Hero(): JSX.Element {
           src={"/img/hero/plant/spring.png"}
           width={200}
           height={100}
+          style={{ width: 'auto', height: 'auto' }}
           alt="plant"
           className="absolute -bottom-3 right-0"
         />

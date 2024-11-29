@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import dynamic from "next/dynamic";
+
+const Calendar = dynamic(() => import('../index/calendar'), { ssr: false });
 
 type FormData = {
   cycle: string;
@@ -11,10 +14,12 @@ type FormData = {
 
 export default function QuickCalculator(): JSX.Element {
   const [result, setResult] = useState<{
-    nextPeriodDate: string;
+    nextPeriodFirstDate: string;
+    nextPeriodEndDate: string;
     ovulationDate: string;
   }>({
-    nextPeriodDate: "",
+    nextPeriodFirstDate: "",
+    nextPeriodEndDate: "",
     ovulationDate: "",
   });
 
@@ -31,23 +36,22 @@ export default function QuickCalculator(): JSX.Element {
   }
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+    const cycle = parseInt(data.cycle, 10);
+    const duration = parseInt(data.duration, 10);
+    const firstDayDate = new Date(data.firstDay);
 
-    const cycle = parseInt(data.cycle, 10); // 將 cycle 轉為數字
-    const duration = parseInt(data.duration, 10); // 將 duration 轉為數字
-    const firstDayDate = new Date(data.firstDay); // 將 firstDay 轉為 Date
+    const nextPeriodFirstDate = new Date(firstDayDate);
+    nextPeriodFirstDate.setDate(firstDayDate.getDate() + cycle);
 
-    // 計算下一次月經日期
-    const nextPeriodDate = new Date(firstDayDate);
-    nextPeriodDate.setDate(firstDayDate.getDate() + cycle);
+    const nextPeriodEndDate = new Date(nextPeriodFirstDate);
+    nextPeriodEndDate.setDate(nextPeriodEndDate.getDate() + duration);
 
-    // 計算排卵日
-    const ovulationDate = new Date(nextPeriodDate);
-    ovulationDate.setDate(nextPeriodDate.getDate() - 14);
+    const ovulationDate = new Date(nextPeriodFirstDate);
+    ovulationDate.setDate(nextPeriodFirstDate.getDate() - 14);
 
-    // 設置結果，格式化日期為 YYYY-MM-DD
     setResult({
-      nextPeriodDate: nextPeriodDate.toISOString().split("T")[0],
+      nextPeriodFirstDate: nextPeriodFirstDate.toISOString().split("T")[0],
+      nextPeriodEndDate: nextPeriodEndDate.toISOString().split("T")[0],
       ovulationDate: ovulationDate.toISOString().split("T")[0],
     });
   };
@@ -101,7 +105,8 @@ export default function QuickCalculator(): JSX.Element {
                 className="border-2 border-[#4C3526] px-6 py-1 rounded-full"
                 onClick={() =>
                   setResult({
-                    nextPeriodDate: "",
+                    nextPeriodFirstDate: "",
+                    nextPeriodEndDate: "",
                     ovulationDate: "",
                   })
                 }
@@ -118,14 +123,16 @@ export default function QuickCalculator(): JSX.Element {
           </form>
         </div>
         <div className="p-10">
-          <p>
-            下一次月經日期:{" "}
-            {result.nextPeriodDate ? result.nextPeriodDate : "尚未計算"}
-          </p>
-          <p>
-            排卵日:{" "}
-            {result.ovulationDate ? result.ovulationDate : "尚未計算"}
-          </p>
+          <div>
+            下一次月經開始日期:{result.nextPeriodFirstDate ? result.nextPeriodFirstDate : "尚未計算"}
+          </div>
+          <div>
+            下一次月經結束日期:{result.nextPeriodEndDate ? result.nextPeriodEndDate : "尚未計算"}
+          </div>
+          <div>
+            排卵日:{result.ovulationDate ? result.ovulationDate : "尚未計算"}
+          </div>
+          <Calendar result={result}/>
         </div>
       </div>
     </>
