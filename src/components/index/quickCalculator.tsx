@@ -129,7 +129,7 @@ export default function QuickCalculator(): JSX.Element {
           <div className="mb-1 p-2 bg-[#fe814ba2] rounded-sm">
             下一次月經結束日期:{result.nextPeriodEndDate ? result.nextPeriodEndDate : "尚未計算"}
           </div>
-          <div className="p-2 bg-[#FFDB8F] rounded-sm">
+          <div className="p-2 bg-[#FFDB8Fa2] rounded-sm">
             排卵日:{result.ovulationDate ? result.ovulationDate : "尚未計算"}
           </div>
           <Calendar result={result}/>
