@@ -42,9 +42,12 @@ const StyledPickersDay = styled(PickersDay)(() => ({
 const CustomDay = (props: PickersDayProps<Dayjs>) => {
   const { day, selected, ...other } = props;
 
-  const isHighlighted = day.isSame(nextPeriodFirstDate, "day") || day.isSame(nextPeriodEndDate, "day");
-  const isOvulation = day.isSame(ovulationDate, "day");
-  const isInRange = day.isBetween(nextPeriodFirstDate, nextPeriodEndDate, "day", "[]");
+  // 判斷是否有資料
+  const hasData = nextPeriodFirstDate.isValid() && nextPeriodEndDate.isValid() && ovulationDate.isValid();
+
+  const isHighlighted = hasData && (day.isSame(nextPeriodFirstDate, "day") || day.isSame(nextPeriodEndDate, "day"));
+  const isOvulation = hasData && day.isSame(ovulationDate, "day");
+  const isInRange = hasData && day.isBetween(nextPeriodFirstDate, nextPeriodEndDate, "day", "[]");
 
   return (
     <StyledPickersDay
@@ -54,6 +57,7 @@ const CustomDay = (props: PickersDayProps<Dayjs>) => {
       className={`${isHighlighted ? "highlight" : ""} ${
         isOvulation ? "ovulation" : ""
       } ${isInRange && !isHighlighted ? "range-highlight" : ""}`}
+      style={{ backgroundColor: !hasData ? "transparent" : undefined }}
     />
   );
 };
