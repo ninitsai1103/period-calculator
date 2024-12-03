@@ -13,7 +13,7 @@ export default function NavigationBar(): JSX.Element {
         <div className="w-8 h-8">
           <Image src="/logo.png" alt="logo" width={50} height={50} />
         </div>
-        <div className="ml-4 lg:text-2xl">123546</div>
+        <div className="ml-4 lg:text-2xl">月經 Notebook</div>
       </div>
       <div className="flex items-center">
         <div className="cursor-pointer text-lg">
